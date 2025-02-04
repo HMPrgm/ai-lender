@@ -14,6 +14,7 @@ def register():
     user.set_password(data['password'])
     db.session.add(user)
     db.session.commit()
+    login_user(user)
     return jsonify({
             'user': {
                 'id': user.id,
