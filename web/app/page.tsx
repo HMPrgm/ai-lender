@@ -1,5 +1,6 @@
 'use client'
 import { useEffect, useState } from 'react'
+import axios from 'axios'
 
 interface MessageResponse {
   message: string
@@ -10,11 +11,13 @@ export default function Home() {
   const [loading, setLoading] = useState<boolean>(true)
 
   useEffect(() => {
-    fetch('/v1/hello')
-      .then(res => res.json())
-      .then((data: MessageResponse) => {
-        setMessage(data.message)
+    axios.get('auth/hello')
+      .then(res => {
+        setMessage(res.data.message)
         setLoading(false)
+      })
+      .catch(err => {
+        console.error(err)
       })
   }, [])
 
