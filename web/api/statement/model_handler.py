@@ -13,12 +13,3 @@ def data_to_features(data: np.array):
     X = np.reshape(data[:,0],(-1,1))
     y = np.reshape(data[:,1],(-1,1))
     return (X, y)
-
-def calculate_residuals(y: np.array, y_pred: np.array) -> np.array:
-    return y - y_pred
-    
-def z_score(residuals: np.array):
-    mean = np.mean(residuals)
-    std_dev = np.std(residuals)
-    
-    return (residuals - mean) / std_dev
