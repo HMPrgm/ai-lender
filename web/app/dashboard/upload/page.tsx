@@ -5,6 +5,7 @@ import axios from 'axios';
 export default function Upload() {
     const [file, setFile] = useState<File | null>(null);
     const [loading, setLoading] = useState(false);
+
     const extension = '.xlsx'
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
