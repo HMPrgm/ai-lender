@@ -4,8 +4,8 @@ from .models import User, db
 
 api = Blueprint('api', __name__)
 
-@api.route('/signup', methods=['POST'])
-def signup():
+@api.route('/auth/register', methods=['POST'])
+def register():
     data = request.get_json()
     user = User(
         email=data['email'],
@@ -16,7 +16,7 @@ def signup():
     db.session.commit()
     return jsonify({'message': 'User created successfully'}), 201
 
-@api.route('/login', methods=['POST'])
+@api.route('/auth/login', methods=['POST'])
 def login():
     data = request.get_json()
     user = User.query.filter_by(email=data['email']).first()
@@ -25,7 +25,7 @@ def login():
         return jsonify({'message': 'Logged in successfully'})
     return jsonify({'message': 'Invalid credentials'}), 401
 
-@api.route('/logout')
+@api.route('/auth/logout')
 @login_required
 def logout():
     logout_user()
