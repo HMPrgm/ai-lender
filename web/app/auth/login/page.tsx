@@ -1,8 +1,11 @@
 'use client'
 import { useAuth } from '../../hooks/useAuth'
+import { useState } from 'react';
+import ErrorMessage from '@/app/components/ErrorMessage';
 
 export default function Login() {
   const { login } = useAuth();
+  const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -13,6 +16,7 @@ export default function Login() {
       await login(email, password);
     } catch (error) {
       console.error('Login failed:', error);
+      setError("Invalid credentials. Are you registered?")
     }
   };
 
@@ -30,6 +34,7 @@ export default function Login() {
               <label htmlFor="password">Password</label>
               <input className='border-black border-2' name="password" type="password" required />
             </div>
+            {error && <ErrorMessage message={error} />}
             <div>
               <button className='px-4 py-1 border-2 border-black' type="submit">Login</button>
             </div>
@@ -39,3 +44,4 @@ export default function Login() {
     </div>
   );
 }
+
