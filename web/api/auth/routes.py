@@ -14,7 +14,13 @@ def register():
     user.set_password(data['password'])
     db.session.add(user)
     db.session.commit()
-    return jsonify({'message': 'User created successfully'}), 201
+    return jsonify({
+            'user': {
+                'id': user.id,
+                'email': user.email,
+                'name': user.name
+            }
+        }), 201
 
 @api.route('/auth/login', methods=['POST'])
 def login():
@@ -22,7 +28,13 @@ def login():
     user = User.query.filter_by(email=data['email']).first()
     if user and user.check_password(data['password']):
         login_user(user)
-        return jsonify({'message': 'Logged in successfully'})
+        return jsonify({
+            'user': {
+                'id': user.id,
+                'email': user.email,
+                'name': user.name
+            }
+        }), 200
     return jsonify({'message': 'Invalid credentials'}), 401
 
 @api.route('/auth/check')

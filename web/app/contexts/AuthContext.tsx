@@ -45,7 +45,7 @@ export function AuthProvider({ children }: { children: any }) {
                 password
             });
             setUser(data.user);
-            router.push('/dashboard');
+            router.push('/profile');
         } catch (error) {
             if (axios.isAxiosError(error)) {
                 throw new Error(error.response?.data?.message || 'Login failed');
@@ -72,7 +72,7 @@ export function AuthProvider({ children }: { children: any }) {
                 name
             });
             setUser(data.user);
-            router.push('/dashboard');
+            router.push('/profile');
         } catch (error) {
             if (axios.isAxiosError(error)) {
                 throw new Error(error.response?.data?.message || 'Registration failed');
