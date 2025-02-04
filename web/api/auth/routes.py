@@ -50,7 +50,7 @@ def check_auth():
         }), 200
     return jsonify({'message': 'Not authenticated'}), 401
 
-@api.route('/auth/logout')
+@api.route('/auth/logout', methods=['POST'])
 @login_required
 def logout():
     logout_user()
