@@ -1,6 +1,6 @@
 'use client'
 import { useEffect } from 'react';
-import { useAuth } from '../hooks/useAuth';
+import { useAuth } from '../../hooks/useAuth';
 
 export default function Profile() {
   const { user, logout } = useAuth();
