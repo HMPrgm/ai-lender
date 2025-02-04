@@ -1,9 +1,10 @@
+'use client'
 import { useAuth } from '../../hooks/useAuth'
 
 export default function Login() {
     const { login } = useAuth();
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e: any) => {
         e.preventDefault();
         const email = e.target.email.value;
         const password = e.target.password.value;
