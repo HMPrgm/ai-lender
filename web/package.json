@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "backend": "python api/server.py"
+    "backend": "python api/run.py"
   },
   "dependencies": {
     "react": "^19.0.0",
