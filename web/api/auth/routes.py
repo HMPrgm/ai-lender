@@ -25,6 +25,10 @@ def login():
         return jsonify({'message': 'Logged in successfully'})
     return jsonify({'message': 'Invalid credentials'}), 401
 
+@api.route('/auth/hello')
+def hello():
+    return jsonify({'message':'hello'})
+
 @api.route('/auth/logout')
 @login_required
 def logout():
