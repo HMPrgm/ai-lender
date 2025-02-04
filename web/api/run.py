@@ -16,7 +16,14 @@ app.config['SECRET_KEY'] = os.getenv('FLASK_SECRET_KEY')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # Initialize extensions
-CORS(app)
+CORS(app, resources={
+    r"/auth/*": {
+        "origins": ["http://localhost:3000"],
+        "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+        "allow_headers": ["Content-Type", "Authorization"]
+    }
+},
+supports_credentials=True)
 db.init_app(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
