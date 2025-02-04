@@ -1,6 +1,15 @@
 'use client'
 import { createContext, useContext, useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import axios from 'axios';
+
+const api = axios.create({
+    baseURL: 'http://localhost:5000',
+    withCredentials: true,
+    headers: {
+        'Content-Type': 'application/json'
+    }
+});
 
 interface AuthContextType {
     user: any;
@@ -20,13 +29,8 @@ export function AuthProvider({ children }: { children: any }) {
 
     const checkAuth = async () => {
         try {
-            const response = await fetch('http://localhost:5000/auth/check', {
-                credentials: 'include'
-            });
-            if (response.ok) {
-                const data = await response.json();
-                setUser(data.user);
-            }
+            const { data } = await api.get('/auth/check');
+            setUser(data.user);
         } catch (error) {
             setUser(null);
         } finally {
@@ -36,31 +40,23 @@ export function AuthProvider({ children }: { children: any }) {
 
     const login = async (email: string, password: string) => {
         try {
-            const response = await fetch('auth/login', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                credentials: 'include',
-                body: JSON.stringify({ email, password })
+            const { data } = await api.post('/auth/login', {
+                email,
+                password
             });
-
-            if (response.ok) {
-                const data = await response.json();
-                setUser(data.user);
-                router.push('/dashboard');
-            } else {
-                throw new Error('Login failed');
-            }
+            setUser(data.user);
+            router.push('/dashboard');
         } catch (error) {
+            if (axios.isAxiosError(error)) {
+                throw new Error(error.response?.data?.message || 'Login failed');
+            }
             throw error;
         }
     };
 
     const logout = async () => {
         try {
-            await fetch('auth/logout', {
-                method: 'POST',
-                credentials: 'include'
-            });
+            await api.post('/auth/logout');
             setUser(null);
             router.push('/login');
         } catch (error) {
@@ -70,22 +66,17 @@ export function AuthProvider({ children }: { children: any }) {
 
     const register = async (email: string, password: string, name: string) => {
         try {
-            const response = await fetch('auth/register', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                credentials: 'include',
-                body: JSON.stringify({ email, password, name })
+            const { data } = await api.post('/auth/register', {
+                email,
+                password,
+                name
             });
-
-            if (response.ok) {
-                const data = await response.json();
-                setUser(data.user);
-                router.push('/dashboard');
-            } else {
-                const error = await response.json();
-                throw new Error(error.message);
-            }
+            setUser(data.user);
+            router.push('/dashboard');
         } catch (error) {
+            if (axios.isAxiosError(error)) {
+                throw new Error(error.response?.data?.message || 'Registration failed');
+            }
             throw error;
         }
     };
