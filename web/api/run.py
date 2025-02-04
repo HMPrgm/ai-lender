@@ -1,4 +1,5 @@
 import os
+from dotenv import load_dotenv
 
 from flask import Flask
 from flask_login import LoginManager
@@ -6,13 +7,14 @@ from flask_cors import CORS
 from auth.models import db, User
 from auth.routes import api
 
+load_dotenv()
+
 app = Flask(__name__)
 
 # Configuration
-app.config['SECRET_KEY'] = 'your-secret-key-here'
+app.config['SECRET_KEY'] = os.getenv('FLASK_SECRET_KEY')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
 # Initialize extensions
 CORS(app)
 db.init_app(app)
