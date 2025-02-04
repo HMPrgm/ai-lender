@@ -1,12 +1,19 @@
 'use client'
 import { useAuth } from '../../hooks/useAuth'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ErrorMessage from '@/app/components/ErrorMessage';
 import Link from 'next/link'
+import { useRouter } from 'next/navigation';
 
 export default function Login() {
-  const { login } = useAuth();
+  const { login, user } = useAuth();
   const [error, setError] = useState<string | null>(null);
+
+  const router = useRouter();
+
+  const handleRedirect = () => {
+    router.push('/profile');
+  };
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -20,6 +27,12 @@ export default function Login() {
       setError("Invalid credentials. Are you registered?")
     }
   };
+
+  useEffect(() => {
+    if (user) {
+      handleRedirect()
+    }
+  }, [user])
 
   return (
     <div className='flex items-center justify-center'>
