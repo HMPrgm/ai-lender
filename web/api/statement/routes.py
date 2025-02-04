@@ -1,6 +1,6 @@
 import os
 from flask import Blueprint, request, jsonify
-from predictor import predictions_from_spreadsheet as predictor
+from .predictor import predictions_from_spreadsheet
 import pandas as pd
 
 # Configure upload folder
@@ -29,7 +29,7 @@ def upload_file():
             # Read the Excel file directly from the request
             df = pd.read_excel(file)
             
-            data = predictor(df)
+            data = predictions_from_spreadsheet(df)
             
             return jsonify({
                 'message': 'File processed successfully',
