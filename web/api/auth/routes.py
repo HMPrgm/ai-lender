@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from flask_login import login_user, logout_user, login_required
+from flask_login import login_user, logout_user, login_required, current_user
 from .models import User, db
 
 api = Blueprint('api', __name__)
@@ -25,9 +25,18 @@ def login():
         return jsonify({'message': 'Logged in successfully'})
     return jsonify({'message': 'Invalid credentials'}), 401
 
-@api.route('/auth/hello')
-def hello():
-    return jsonify({'message':'hello'})
+@api.route('/auth/check')
+@login_required
+def check_auth():
+    if current_user.is_authenticated:
+        return jsonify({
+            'user': {
+                'id': current_user.id,
+                'email': current_user.email,
+                'name': current_user.name
+            }
+        }), 200
+    return jsonify({'message': 'Not authenticated'}), 401
 
 @api.route('/auth/logout')
 @login_required
