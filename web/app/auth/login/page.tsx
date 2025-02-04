@@ -2,6 +2,7 @@
 import { useAuth } from '../../hooks/useAuth'
 import { useState } from 'react';
 import ErrorMessage from '@/app/components/ErrorMessage';
+import Link from 'next/link'
 
 export default function Login() {
   const { login } = useAuth();
@@ -37,6 +38,9 @@ export default function Login() {
             {error && <ErrorMessage message={error} />}
             <div>
               <button className='px-4 py-1 border-2 border-black' type="submit">Login</button>
+            </div>
+            <div>
+              <Link href="/auth/register">Register</Link>
             </div>
           </div>
         </form>
