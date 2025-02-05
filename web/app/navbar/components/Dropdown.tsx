@@ -86,7 +86,7 @@ export default function Dropdown() {
                         transition={{ duration: 0.2 }}
                         className="absolute right-0 mt-4 mr-8 w-48 bg-white rounded-lg border py-2"
                     >
-                        {links.map(l => <button onClick={() => handleLinkClick(l)} className='block px-4 py-2 text-dark_2 hover:text-dark_4 transition-colors'>{l.name}</button>)}
+                        {links.map(l => <button key={l.name} onClick={() => handleLinkClick(l)} className='block px-4 py-2 text-dark_2 hover:text-dark_4 transition-colors'>{l.name}</button>)}
                     </motion.div>
                 )}
             </AnimatePresence>
