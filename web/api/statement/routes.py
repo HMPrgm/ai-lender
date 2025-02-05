@@ -26,13 +26,16 @@ def upload_statement():
     if file.filename == '':
         return jsonify({'error': 'No selected file'}), 400
         
+    if not allowed_file(file.filename):
+        return jsonify({'error': 'Invalid file extension, must be a .xlsx file'}), 400
+    
     if file and allowed_file(file.filename):
         try:
             # Read the Excel file directly from the request
             df = pd.read_excel(file)
             if (not('Balance' in df.columns or 'Date' in df.columns)):
                 return jsonify({
-                'message': 'You forgot to put columns for Balance or Date',
+                'error': 'You forgot to put columns for Balance or Date',
             }), 400
             
             data = predictions_from_spreadsheet(df)
