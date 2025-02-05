@@ -68,7 +68,7 @@ def get_statements():
 @api.route('/statement/<int:id>', methods=['GET'])
 @login_required
 def get_statement(id):
-    statement = Statement.query.filter(id=id, user_id=current_user.id).first()
+    statement = Statement.query.filter_by(id=id, user_id=current_user.id).first()
     
     if not statement:
         return jsonify({'error': 'Statement not found'}), 404
