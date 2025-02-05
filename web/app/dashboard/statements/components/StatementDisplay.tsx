@@ -13,7 +13,7 @@ export default function StatementDisplay({statement}:{statement:Statement}) {
 
   return (
     <div>
-        <Link href={`/dashboard/statement/${statement.id}`} className='grid grid-cols-8 py-1 text-dark_2'>
+        <Link href={`/dashboard/statement/${statement.id}`} className='grid grid-cols-8 py-2 text-dark_2 hover:bg-slate-50 transition-colors px-2'>
             <div>{getDate()}</div>
             <div className='col-span-3'>
                 {statement.title}
