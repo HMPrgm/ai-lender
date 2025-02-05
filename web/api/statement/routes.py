@@ -23,7 +23,6 @@ def upload_statement():
         return jsonify({'error': 'No file part'}), 400
     
     file = request.files['file']
-    
     if file.filename == '':
         return jsonify({'error': 'No selected file'}), 400
         
@@ -55,6 +54,7 @@ def upload_statement():
             }), 201
             
         except Exception as e:
+            print(e)
             return jsonify({'error': str(e)}), 500
             
     return jsonify({'error': 'File type not allowed'}), 400
