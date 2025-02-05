@@ -6,7 +6,7 @@ import pandas as pd
 # Configure upload folder
 UPLOAD_FOLDER = 'uploads'
 ALLOWED_EXTENSIONS = {'xlsx'}
-api = Blueprint('statementApi', __name__)
+api = Blueprint('statements', __name__)
 
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
