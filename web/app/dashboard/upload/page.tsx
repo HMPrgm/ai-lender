@@ -83,13 +83,13 @@ export default function Upload() {
         <div>
             <div className='flex flex-col text-center'>
                 <h1 className='text-dark_1 text-5xl font-light text-center my-9'>Upload Bank Statement</h1>
-                <h2 className='text-dark_3 font-light'>Make sure you have a column labeled "Balance" and a column labeled "Date"</h2>
+                <h2 className='text-dark_2 font-light'>Make sure you have a column labeled <span className='font-medium'>"Balance"</span> and a column labeled <span className="font-medium">"Date"</span></h2>
             </div>
             <div className="max-w-xl mx-auto p-6 flex flex-col items-center">
             
                 <label
                     htmlFor="dropzone-file"
-                    className={`flex flex-col items-center justify-center w-full h-64
+                    className={`transition-colors flex flex-col items-center justify-center w-full h-64
                     border-2 border-dashed rounded-lg cursor-pointer
                     ${dragActive
                             ? 'border-blue-600 bg-blue-50'
