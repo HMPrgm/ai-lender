@@ -18,7 +18,7 @@ export default function StatementPage() {
 
     useEffect(() => {
         const fetchStatement = async () => {
-            
+
             try {
                 const { data } = await axios.get(
                     `/api/statement/${id}`,
@@ -43,14 +43,30 @@ export default function StatementPage() {
     if (!statement) return <div>Statement not found</div>;
 
     return (
-        <div className='ml-3'>
-            <h1 className='text-3xl mb-4'>{statement.title}</h1>
-            {<Slope slope={statement.slope}/>}
-            {<Consistancy consistancy={statement.consistancy}/>}
-            {<Change change_in_balance={statement.change_in_balance}/>}
-            {<Days days={statement.days}/>}
+        <div className='flex flex-col items-center gap-4 my-4'>
+            <h1 className='text-5xl font-light text-dark_1 mb-4 my-6'>{statement.title}</h1>
+            <div className='mt-12 grid grid-cols-2 gap-4'>
+                {<Outcome statement={statement} />}
 
-            {<Outcome statement={statement}/>}
+                <div className='border py-12 px-12 rounded-xl text-center'>
+                    <h2 className='text-5xl font-light mb-6'>Contributing Factors</h2>
+                    <ul className='text-left flex flex-col gap-3 text-lg'>
+                        <li className=''>
+                            {<Slope slope={statement.slope} />}
+                        </li>
+                        <li>
+                            {<Consistancy consistancy={statement.consistancy} />}
+                        </li>
+                        <li>
+                            {<Change change_in_balance={statement.change_in_balance} />}
+                        </li>
+                        <li>
+                            {<Days days={statement.days} />}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
         </div>
     );
 }

@@ -11,8 +11,8 @@ export default function NavBar() {
 
     return (
         <nav>
-            <div className='flex justify-between'>
-                <Link className='navbar-link font-bold' href='/'>Henry's Casca Assignment</Link>
+            <div className='flex justify-between border-b'>
+                <Link className='px-6 py-4 font-light text-3xl' href='/'>Casca Coding Challenge</Link>
                 <div>{user ? <LoggedIn /> : <LoggedOut />}</div>
             </div>
         </nav>
