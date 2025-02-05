@@ -52,6 +52,7 @@ export default function Dropdown() {
     ]
 
     const handleLinkClick = async (l: NavbarLink) => {
+        setIsOpen(false)
         if (l.func) {
             await l.func()
         }
@@ -63,7 +64,7 @@ export default function Dropdown() {
         <div className="relative">
             <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="flex items-center gap-2 px-4 py-2 mx-2 my-2 hover:bg-gray-100 text-dark_2 transition-colors rounded-lg"
+                className="flex items-center gap-2 px-4 py-2 mx-8 my-3 hover:bg-gray-100 text-dark_2 transition-colors rounded-lg"
             >
                 Hi, {user.name}
                 <svg
@@ -83,7 +84,7 @@ export default function Dropdown() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -10 }}
                         transition={{ duration: 0.2 }}
-                        className="absolute right-0 mt-4 w-48 bg-white rounded-lg border py-2"
+                        className="absolute right-0 mt-4 mr-8 w-48 bg-white rounded-lg border py-2"
                     >
                         {links.map(l => <button onClick={() => handleLinkClick(l)} className='block px-4 py-2 text-dark_2 hover:text-dark_4 transition-colors'>{l.name}</button>)}
                     </motion.div>
