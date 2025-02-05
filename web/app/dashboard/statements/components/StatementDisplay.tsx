@@ -1,7 +1,7 @@
 import React from 'react'
 import { Statement } from '../page'
 import Link from 'next/link'
-import Outcome from '../../statement/[id]/components/Outcome'
+import Outcome from './Outcome'
 
 export default function StatementDisplay({statement}:{statement:Statement}) {
 

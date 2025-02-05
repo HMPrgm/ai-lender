@@ -43,14 +43,15 @@ export default function StatementPage() {
     if (!statement) return <div>Statement not found</div>;
 
     return (
-        <div className='ml-3'>
-            <h1 className='text-3xl mb-4'>{statement.title}</h1>
+        <div className='flex flex-col items-center gap-4 my-4'>
+            <h1 className='text-5xl font-light text-dark_1 mb-4'>{statement.title}</h1>
+            {<Outcome statement={statement}/>}
+            
             {<Slope slope={statement.slope}/>}
             {<Consistancy consistancy={statement.consistancy}/>}
             {<Change change_in_balance={statement.change_in_balance}/>}
             {<Days days={statement.days}/>}
 
-            {<Outcome statement={statement}/>}
         </div>
     );
 }
