@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import ErrorMessage from '@/app/components/ErrorMessage';
 import Link from 'next/link'
 
-export default function Login() {
+export default function Register() {
     const { register, user } = useAuth();
     const [error, setError] = useState<string | null>(null);
 
@@ -21,8 +21,16 @@ export default function Login() {
         const password = e.target.password.value;
         const name = e.target.name.value;
 
+        if (password.length < 8) {
+            setError('Password must be at least 8 characters')
+            return 
+        }
+
         try {
-            await register(email, password, name);
+            const message: string|null = await register(email, password, name);
+            if (message !== null) {
+                setError(message)
+            }
         } catch (error) {
             console.error('Login failed:', error);
             setError("Registration Failed")

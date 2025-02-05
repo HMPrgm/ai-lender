@@ -12,7 +12,7 @@ def register():
     
     user = User.query.filter_by(email=data['email']).first()
     if user:
-        return jsonify({'error':'User already exists with this email'}), 400
+        return jsonify({'message':'User already exists with this email'}), 400
         
     user = User(
         email=data['email'],

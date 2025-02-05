@@ -17,7 +17,7 @@ interface AuthContextType {
     login: (email: string, password: string) => Promise<void>;
     logout: () => Promise<void>;
     checkAuth: () => Promise<void>;
-    register: (email: string, password: string, name: string) => Promise<void>;
+    register: (email: string, password: string, name: string) => Promise<null|string>;
 }
 
 export const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -64,7 +64,7 @@ export function AuthProvider({ children }: { children: any }) {
         }
     };
 
-    const register = async (email: string, password: string, name: string) => {
+    const register = async (email: string, password: string, name: string): Promise<string | null> => {
         try {
             const { data } = await api.post('/auth/register', {
                 email,
@@ -75,10 +75,12 @@ export function AuthProvider({ children }: { children: any }) {
             router.push('/dashboard/profile');
         } catch (error) {
             if (axios.isAxiosError(error)) {
-                throw new Error(error.response?.data?.message || 'Registration failed');
+                return error.response?.data?.message 
+                // throw new Error(error.response?.data?.message || 'Registration failed');
             }
             throw error;
         }
+        return null
     };
 
     useEffect(() => {
