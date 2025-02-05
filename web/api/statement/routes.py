@@ -64,3 +64,13 @@ def upload_statement():
 def get_statements():
     statements = Statement.query.filter_by(user_id=current_user.id).all()
     return jsonify([statement.to_dict() for statement in statements])
+
+@api.route('/statement/<int:id>', methods=['GET'])
+@login_required
+def get_statement(id):
+    statement = Statement.query.filter(id=id, user_id=current_user.id).first()
+    
+    if not statement:
+        return jsonify({'error': 'Statement not found'}), 404
+    
+    return jsonify(statement.to_dict()), 200
