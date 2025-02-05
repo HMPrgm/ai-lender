@@ -12,7 +12,6 @@ export default function StatementPage() {
     const id = params.id;
 
     useEffect(() => {
-        console.log("HELLO")
         const fetchStatement = async () => {
             
             try {
