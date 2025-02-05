@@ -7,6 +7,7 @@ import Slope from './components/Slope';
 import Consistancy from './components/Consistancy';
 import Days from './components/Days';
 import Change from './components/Change';
+import Outcome from './components/Outcome';
 
 export default function StatementPage() {
     const [statement, setStatement] = useState<Statement | null>(null);
@@ -46,8 +47,10 @@ export default function StatementPage() {
             <h1 className='text-3xl mb-4'>{statement.title}</h1>
             {<Slope slope={statement.slope}/>}
             {<Consistancy consistancy={statement.consistancy}/>}
-            {<Days days={statement.days}/>}
             {<Change change_in_balance={statement.change_in_balance}/>}
+            {<Days days={statement.days}/>}
+
+            {<Outcome statement={statement}/>}
         </div>
     );
 }
