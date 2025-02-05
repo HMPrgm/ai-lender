@@ -2,41 +2,62 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useAuth } from '@/app/hooks/useAuth';
 
 interface NavbarLink {
     name: string;
-    link: string
+    link: string;
+    func: undefined | (() => Promise<void>)
 }
 
-const links: NavbarLink[] = [
-    {
-        name: 'Upload Statement',
-        link: '/dashboard/upload'
-    },
-    {
-        name: 'Past Statements',
-        link: '/dashboard/profile'
-    },
-    {
-        name: 'Profile',
-        link: '/dashboard/profile'
-    },
-    {
-        name: 'About',
-        link: '/about'
-    },
-    // TODO
-    // {
-    //     name: 'Log Out',
-    //     link: ''
-    // },
-]
+
 
 export default function Dropdown() {
     const [isOpen, setIsOpen] = useState(false);
 
-    const { user } = useAuth()
+    const { user, logout } = useAuth()
+    const router = useRouter();
+
+
+    const links: NavbarLink[] = [
+        {
+            name: 'Upload Statement',
+            link: '/dashboard/upload',
+            func: undefined
+        },
+        {
+            name: 'Past Statements',
+            link: '/dashboard/profile',
+            func: undefined
+        },
+        {
+            name: 'Profile',
+            link: '/dashboard/profile',
+            func: undefined
+        },
+        {
+            name: 'About',
+            link: '/about',
+            func: undefined
+        },
+        // TODO
+        {
+            name: 'Log Out',
+            link: '/auth/login',
+            func: async () => {
+                await logout()
+            }
+        },
+    ]
+
+    const handleLinkClick = async (l: NavbarLink) => {
+        if (l.func) {
+            await l.func()
+        }
+        router.push(l.link)
+    }
+
 
     return (
         <div className="relative">
@@ -53,6 +74,8 @@ export default function Dropdown() {
                 </svg>
             </button>
 
+            
+
             <AnimatePresence>
                 {isOpen && (
                     <motion.div
@@ -62,7 +85,7 @@ export default function Dropdown() {
                         transition={{ duration: 0.2 }}
                         className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2"
                     >
-                        {links.map(l => <Link href={l.link} className='block px-4 py-2 hover:bg-gray-100'>{l.name}</Link>)}
+                        {links.map(l => <button onClick={() => handleLinkClick(l)} className='block px-4 py-2 hover:bg-gray-100'>{l.name}</button>)}
                     </motion.div>
                 )}
             </AnimatePresence>
