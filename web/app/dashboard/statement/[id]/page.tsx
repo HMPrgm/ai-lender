@@ -66,7 +66,6 @@ export default function StatementPage() {
                     </ul>
                 </div>
             </div>
-
         </div>
     );
 }

@@ -30,6 +30,10 @@ def upload_statement():
         try:
             # Read the Excel file directly from the request
             df = pd.read_excel(file)
+            if (not('Balance' in df.columns or 'Date' in df.columns)):
+                return jsonify({
+                'message': 'You forgot to put columns for Balance or Date',
+            }), 400
             
             data = predictions_from_spreadsheet(df)
 
