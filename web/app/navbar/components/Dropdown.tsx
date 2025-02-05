@@ -28,7 +28,7 @@ export default function Dropdown() {
         },
         {
             name: 'Past Statements',
-            link: '/dashboard/profile',
+            link: '/dashboard/statements',
             func: undefined
         },
         {
