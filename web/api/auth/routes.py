@@ -1,8 +1,8 @@
 from flask import Blueprint, request, jsonify
 from flask_login import login_user, logout_user, login_required, current_user
-from .models import User, db
+from models import User, db
 
-api = Blueprint('api', __name__)
+api = Blueprint('auth', __name__)
 
 @api.route('/auth/register', methods=['POST'])
 def register():
@@ -56,3 +56,4 @@ def check_auth():
 def logout():
     logout_user()
     return jsonify({'message': 'Logged out successfully'})
+
