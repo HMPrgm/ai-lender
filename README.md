@@ -27,7 +27,7 @@ The app itself is more complicated than just a method to upload statements and g
 
 To run this project, you must have python and node.js installed on your machine.
 
-After cloning the repository, open your terminal to the repository, and type `cd ./web` to get into the web folder. Then run the following
+After cloning the repository, open your terminal to the repository, and type `cd ./casca-assignment/web` to get into the web folder. Then run the following
 ```
 .../web> npm install
 ```
@@ -47,7 +47,9 @@ new that you have your key, put the following in your `.env` file
 FLASK_SECRET_KEY=your_secret_key_here
 ```
 ## Run
-Now simply run the server by typeing
+Now simply run the server by typing
 ```
 .../web> npm run dev
 ```
+The server should be running on [http://localhost:3000
+](http://localhost:3000)
