@@ -1,5 +1,4 @@
 import { Statement } from '@/app/dashboard/statements/page'
-// import GaugeChart from 'react-gauge-chart'
 import React from 'react'
 
 const scoreCalculator = (statement: Statement) => {
@@ -34,9 +33,25 @@ export default function Outcome({ statement }: { statement: Statement }) {
             break;
     }
 
+    const colorOnScore = (score: number) => {
+        switch (score) {
+            case 4:
+                return 'text-green-800'
+            case 3:
+                return 'text-green-800'
+            case 2:
+                return ''
+            case 1:
+                return 'text-red-800'
+            default:
+                return 'text-red-800'
+        }
+    }
+
     return (
-        <div className='border py-4 px-6 rounded-xl'>
-            {/* <GaugeChart nrOfLevels={5} percent={(score+1)/5} /> */}
+        <div className='border py-12 px-12 rounded-xl text-center'>
+            <h2 className='text-4xl font-light'>Overall Score</h2>
+            <div className={`text-7xl font-medium my-4 ${colorOnScore(score)}`}>{score}/4</div>
             <div className='text-dark_2 text-xl font-light'>{message}</div>
         </div>
     )
