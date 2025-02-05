@@ -46,10 +46,14 @@ new that you have your key, put the following in your `.env` file
 ```
 FLASK_SECRET_KEY=your_secret_key_here
 ```
-## Run
-Now simply run the server by typing
+## Build and Run
+Now that everything is setup, we need to build the next.js frontend. do this by running
 ```
-.../web> npm run dev
+.../web> npm run build
+```
+Once the build is finished, simply run the server by typing
+```
+.../web> npm run start
 ```
 The server should be running on [http://localhost:3000
-](http://localhost:3000)
+](http://localhost:3000). 

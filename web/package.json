@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "concurrently \"next dev\" \"python api/run.py\"",
+    "start": "concurrently \"next start\" \"python api/run.py\"",
     "build": "next build",
-    "start": "next start",
     "lint": "next lint",
     "frontend": "next dev",
     "backend": "python api/run.py"
