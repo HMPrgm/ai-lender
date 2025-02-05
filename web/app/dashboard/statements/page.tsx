@@ -10,6 +10,7 @@ export interface Statement {
     slope: number;
     consistancy: number;
     change_in_balance: number;
+    days: number;
     // user_id: number;
 }
 

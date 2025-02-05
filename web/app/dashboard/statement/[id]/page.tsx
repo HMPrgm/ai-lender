@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'next/navigation';
 import { Statement } from '../../statements/page';
+import StatementProcessor from './StatementProcessor';
 
 export default function StatementPage() {
     const [statement, setStatement] = useState<Statement | null>(null);
@@ -38,9 +39,9 @@ export default function StatementPage() {
     if (!statement) return <div>Statement not found</div>;
 
     return (
-        <div>
-            <h1>Statement {statement.id}</h1>
-            {/* Render your statement data here */}
+        <div className='ml-3'>
+            <h1 className='text-3xl mb-4'>{statement.title}</h1>
+            {<StatementProcessor statement={statement}/>}
         </div>
     );
 }
