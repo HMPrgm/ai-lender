@@ -36,25 +36,26 @@ export default function Login() {
 
   return (
     <div className='flex items-center justify-center'>
-      <div className='flex flex-col gap-8 text-center my-12 border-2 border-black py-12 w-96'>
-        <h1 className='text-4xl'>Log In</h1>
+      <div className='flex flex-col gap-8  my-12 border rounded-lg py-12 w-[30em] px-16'>
+        <h1 className='text-3xl'>Log In</h1>
         <form onSubmit={handleSubmit}>
-          <div className='flex flex-col gap-4 items-center'>
-            <div className='flex gap-4'>
-              <label htmlFor="email">Email</label>
-              <input className='border-black border-2' name="email" type="email" required />
+          <div className='flex flex-col gap-4 '>
+            <div className='flex flex-col gap-1 '>
+              <label htmlFor="email" className='text-dark_4 text-sm'>Email</label>
+              <input className='border transition-colors focus:outline-none focus:border-dark_4 rounded-lg px-2 py-1' name="email" type="email" required />
             </div>
-            <div className='flex gap-4'>
-              <label htmlFor="password">Password</label>
-              <input className='border-black border-2' name="password" type="password" required />
+            <div className='flex flex-col gap-1 '>
+              <label htmlFor="password" className='text-dark_4 text-sm'>Password</label>
+              <input className='border transition-colors focus:outline-none focus:border-dark_4 rounded-lg px-2 py-1' name="password" type="password" required />
             </div>
             {error && <ErrorMessage message={error} />}
-            <div>
-              <button className='px-4 py-1 border-2 border-black' type="submit">Login</button>
+            <div className='text-sm text-dark_4'>
+              Don't have an account? <Link href="/auth/register" className='text-secondary hover:text-primary transition-colors'>Register</Link>
             </div>
             <div>
-              <Link href="/auth/register">Register</Link>
+              <button className='px-4 py-1 mt-2 border-2 border-primary text-white bg-primary hover:text-primary hover:bg-white rounded-lg transition-colors ease-linear' type="submit">Login</button>
             </div>
+            
           </div>
         </form>
       </div>
