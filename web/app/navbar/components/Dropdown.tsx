@@ -1,6 +1,8 @@
 'use client'
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Link from 'next/link';
+import { useAuth } from '@/app/hooks/useAuth';
 
 interface NavbarLink {
     name: string;
@@ -24,11 +26,17 @@ const links: NavbarLink[] = [
         name: 'About',
         link: '/about'
     },
+    // TODO
+    // {
+    //     name: 'Log Out',
+    //     link: ''
+    // },
 ]
 
 export default function Dropdown() {
     const [isOpen, setIsOpen] = useState(false);
 
+    const { user } = useAuth()
 
     return (
         <div className="relative">
@@ -36,7 +44,7 @@ export default function Dropdown() {
                 onClick={() => setIsOpen(!isOpen)}
                 className="flex items-center gap-2 px-4 py-2 hover:bg-gray-100 rounded-lg"
             >
-                Dropdown
+                Hi, {user.name}
                 <svg
                     className={`w-4 h-4 transition-transform ${isOpen ? 'rotate-180' : ''}`}
                     viewBox="0 0 24 24"
@@ -54,9 +62,7 @@ export default function Dropdown() {
                         transition={{ duration: 0.2 }}
                         className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2"
                     >
-                        <a href="#" className="block px-4 py-2 hover:bg-gray-100">Item 1</a>
-                        <a href="#" className="block px-4 py-2 hover:bg-gray-100">Item 2</a>
-                        <a href="#" className="block px-4 py-2 hover:bg-gray-100">Item 3</a>
+                        {links.map(l => <Link href={l.link} className='block px-4 py-2 hover:bg-gray-100'>{l.name}</Link>)}
                     </motion.div>
                 )}
             </AnimatePresence>
