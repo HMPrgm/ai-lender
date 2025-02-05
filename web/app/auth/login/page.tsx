@@ -37,7 +37,7 @@ export default function Login() {
   return (
     <div className='flex items-center justify-center'>
       <div className='flex flex-col gap-8  my-12 border rounded-lg py-12 w-[30em] px-16'>
-        <h1 className='text-3xl'>Log In</h1>
+        <h1 className='text-3xl text-dark_1'>Log In</h1>
         <form onSubmit={handleSubmit}>
           <div className='flex flex-col gap-4 '>
             <div className='flex flex-col gap-1 '>
