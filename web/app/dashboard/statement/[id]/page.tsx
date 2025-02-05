@@ -3,7 +3,10 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'next/navigation';
 import { Statement } from '../../statements/page';
-import StatementProcessor from './StatementProcessor';
+import Slope from './components/Slope';
+import Consistancy from './components/Consistancy';
+import Days from './components/Days';
+import Change from './components/Change';
 
 export default function StatementPage() {
     const [statement, setStatement] = useState<Statement | null>(null);
@@ -41,7 +44,10 @@ export default function StatementPage() {
     return (
         <div className='ml-3'>
             <h1 className='text-3xl mb-4'>{statement.title}</h1>
-            {<StatementProcessor statement={statement}/>}
+            {<Slope slope={statement.slope}/>}
+            {<Consistancy consistancy={statement.consistancy}/>}
+            {<Days days={statement.days}/>}
+            {<Change change_in_balance={statement.change_in_balance}/>}
         </div>
     );
 }
