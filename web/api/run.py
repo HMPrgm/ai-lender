@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 from flask import Flask
 from flask_login import LoginManager
 from flask_cors import CORS
-from auth.models import db, User
+from models import db, User
 from auth.routes import api as authApi
 from statement.routes import api as statementApi
 
