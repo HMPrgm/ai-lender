@@ -46,8 +46,17 @@ export default function StatementPage() {
     if (!statements) return <div>Statement not found</div>;
 
     return (
-        <div>
-            {statements.map(s => <StatementDisplay statement={s} key={s.id} />)}
+        <div className='flex flex-col gap-12 justify-center '>
+            <h1 className='text-dark_1 text-5xl font-light text-center mt-12'>Bank Statements</h1>
+            <div className='mx-48'>
+                <div className='grid grid-cols-8 text-dark_4'>
+                    <div>Date</div>
+                    <div className='col-span-3'>Name</div>
+                    <div className='col-span-4'>Classification</div>
+                </div>
+                <hr className='col-span-8'/>
+                {statements.map(s => <StatementDisplay statement={s} key={s.id} />)}
+            </div>
         </div>
     );
 }

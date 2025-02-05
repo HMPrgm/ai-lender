@@ -34,7 +34,7 @@ export default function Outcome({ statement }: { statement: Statement }) {
     }
 
     return (
-        <div className={`my-2 text-xl font-bold ${score >= 3 ? 'text-green-800' : (score === 2 ? '' : 'text-red-800')}`}>
+        <div>
             {message}
         </div>
     )
