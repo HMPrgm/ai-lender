@@ -23,7 +23,7 @@ export default function Upload() {
         
         setLoading(true);
         try {
-            const response = await axios.post('/statement', formData, {
+            const response = await axios.post('/api/statement', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 },
