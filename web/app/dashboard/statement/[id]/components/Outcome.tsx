@@ -50,9 +50,9 @@ export default function Outcome({ statement }: { statement: Statement }) {
 
     return (
         <div className='border py-12 px-12 rounded-xl text-center'>
-            <h2 className='text-4xl font-light'>Overall Score</h2>
-            <div className={`text-7xl font-medium my-4 ${colorOnScore(score)}`}>{score}/4</div>
-            <div className='text-dark_2 text-xl font-light'>{message}</div>
+            <h2 className='text-5xl font-light'>Overall Score</h2>
+            <div className={`text-7xl font-medium my-8 ${colorOnScore(score)}`}>{score}/4</div>
+            <div className='text-dark_2 text-2xl font-light'>{message}</div>
         </div>
     )
 }

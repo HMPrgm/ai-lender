@@ -44,13 +44,13 @@ export default function StatementPage() {
 
     return (
         <div className='flex flex-col items-center gap-4 my-4'>
-            <h1 className='text-5xl font-light text-dark_1 mb-4'>{statement.title}</h1>
-            <div className='grid grid-cols-2 gap-4'>
+            <h1 className='text-5xl font-light text-dark_1 mb-4 my-6'>{statement.title}</h1>
+            <div className='mt-12 grid grid-cols-2 gap-4'>
                 {<Outcome statement={statement} />}
 
                 <div className='border py-12 px-12 rounded-xl text-center'>
-                    <h2 className='text-4xl font-light mb-2'>Contributing Factors</h2>
-                    <ul className='text-left flex flex-col gap-2'>
+                    <h2 className='text-5xl font-light mb-6'>Contributing Factors</h2>
+                    <ul className='text-left flex flex-col gap-3 text-lg'>
                         <li className=''>
                             {<Slope slope={statement.slope} />}
                         </li>

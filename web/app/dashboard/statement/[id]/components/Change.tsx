@@ -1,14 +1,5 @@
 import React from 'react'
 
-export const formatUSD = (amount: number): string => {
-    return new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD',
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
-    }).format(amount);
-};
-
 export default function Change({change_in_balance}:{change_in_balance: number}) {
 
     
