@@ -58,3 +58,9 @@ def upload_statement():
             return jsonify({'error': str(e)}), 500
             
     return jsonify({'error': 'File type not allowed'}), 400
+
+@api.route('/statements',methods=['GET'])
+@login_required
+def get_statements():
+    statements = Statement.query.filter_by(user_id=current_user.id).all()
+    return jsonify([statement.to_dict() for statement in statements])
