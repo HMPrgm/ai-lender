@@ -8,6 +8,7 @@ export default function Upload() {
     const [file, setFile] = useState<File | null>(null);
     const [dragActive, setDragActive] = useState(false);
     const [loading, setLoading] = useState(false);
+    const [error, setError] = useState('');
     const router = useRouter();
 
 
@@ -35,7 +36,11 @@ export default function Upload() {
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files) {
-            setFile(e.target.files[0]);
+            if (e.target.files[0].name.endsWith('.xlsx')) {
+                setFile(e.target.files[0]);
+            } else {
+                setError('Invalid file extension')
+            }
         }
     };
 
@@ -57,6 +62,10 @@ export default function Upload() {
             console.log(response.data)
             router.push(`/dashboard/statement/${response.data.data.id}`);
         } catch (error) {
+            if (axios.isAxiosError(error)) {
+                setError(error.response?.data?.error)
+                // throw new Error(error.response?.data?.message || 'Registration failed');
+            }
             console.error('Upload failed:', error);
         } finally {
             setLoading(false);
@@ -121,6 +130,8 @@ export default function Upload() {
                         onChange={handleFileChange}
                     />
                 </label>
+                
+                { error && <div className='mt-2 text-red-800'>{error}</div> }
                 {file && (
                     <button
                         className="mt-4  px-12 py-2  text-white bg-primary rounded-lg
