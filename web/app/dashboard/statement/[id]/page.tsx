@@ -3,6 +3,11 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'next/navigation';
 import { Statement } from '../../statements/page';
+import Slope from './components/Slope';
+import Consistancy from './components/Consistancy';
+import Days from './components/Days';
+import Change from './components/Change';
+import Outcome from './components/Outcome';
 
 export default function StatementPage() {
     const [statement, setStatement] = useState<Statement | null>(null);
@@ -38,9 +43,14 @@ export default function StatementPage() {
     if (!statement) return <div>Statement not found</div>;
 
     return (
-        <div>
-            <h1>Statement {statement.id}</h1>
-            {/* Render your statement data here */}
+        <div className='ml-3'>
+            <h1 className='text-3xl mb-4'>{statement.title}</h1>
+            {<Slope slope={statement.slope}/>}
+            {<Consistancy consistancy={statement.consistancy}/>}
+            {<Change change_in_balance={statement.change_in_balance}/>}
+            {<Days days={statement.days}/>}
+
+            {<Outcome statement={statement}/>}
         </div>
     );
 }

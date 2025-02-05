@@ -1,6 +1,7 @@
 'use client'
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import StatementDisplay from './components/StatementDisplay';
 
 export interface Statement {
     id: number;
@@ -9,6 +10,7 @@ export interface Statement {
     slope: number;
     consistancy: number;
     change_in_balance: number;
+    days: number;
     // user_id: number;
 }
 
@@ -45,7 +47,7 @@ export default function StatementPage() {
 
     return (
         <div>
-            {statements.map(s => <h1 key={s.id}>Statement {s.id}</h1>)}
+            {statements.map(s => <StatementDisplay statement={s} key={s.id} />)}
         </div>
     );
 }

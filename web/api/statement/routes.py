@@ -34,7 +34,7 @@ def upload_statement():
             data = predictions_from_spreadsheet(df)
 
             # TODO: Add title field to request
-            title = 'Blank'
+            title = file.filename
             
             new_statement = Statement(
                 title=title,
