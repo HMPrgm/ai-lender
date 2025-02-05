@@ -12,7 +12,7 @@ export default function Login() {
     const router = useRouter();
 
     const handleRedirect = () => {
-        router.push('/dashboard/profile');
+        router.push('/dashboard/statements');
     };
 
     const handleSubmit = async (e: any) => {

@@ -31,11 +31,11 @@ export default function Dropdown() {
             link: '/dashboard/statements',
             func: undefined
         },
-        {
-            name: 'Profile',
-            link: '/dashboard/profile',
-            func: undefined
-        },
+        // {
+        //     name: 'Profile',
+        //     link: '/dashboard/profile',
+        //     func: undefined
+        // },
         {
             name: 'About',
             link: '/about',
