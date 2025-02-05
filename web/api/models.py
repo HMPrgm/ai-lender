@@ -11,7 +11,7 @@ class Statement(db.Model):
     title = db.Column(db.String(200), nullable=False)
     time_added = db.Column(db.DateTime, default=datetime.now)
     # date_published = db.Column(db.Date, nullable=False)
-    months = db.Column(db.Integer, nullable=False)
+    days = db.Column(db.Integer, nullable=False)
     slope = db.Column(db.Float, nullable=False)
     consistancy = db.Column(db.Float, nullable=False)
     change_in_balance = db.Column(db.Float, nullable=False)
@@ -25,7 +25,7 @@ class Statement(db.Model):
             'slope': self.slope,
             'consistancy': self.consistancy,
             'change_in_balance': self.change_in_balance,
-            'months': self.months,
+            'days': self.days,
             'user_id': self.user_id
         }
 
