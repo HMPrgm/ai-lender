@@ -21,6 +21,7 @@
 /.venv
 # production
 /build
+db.sqlite
 
 # misc
 .DS_Store
