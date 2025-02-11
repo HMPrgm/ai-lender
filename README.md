@@ -1,5 +1,5 @@
 # About
-Thank you for giving me this opportunity to display my skills. Over the past week I designed and implemented a full-stack ML based app that can analyze and provide insights on a bank statement. This page is here to describe the architecture and technologies that were used and the reasons behind them.
+From 1/27/25 to 2/7/25, I designed and implemented a full-stack ML based app that can analyze and provide insights on a bank statement. This page is here to describe the architecture and technologies that were used and the reasons behind them.
 ## ML Model Architecture
 The first thing I did when I looked at the challenge page, was realize that I didn’t really know what a good or bad bank statement was. I did some research and found that there were many different measures of reliability. I ended up using a linear regression model as it could measure
 - Positive change in balance over time
@@ -21,7 +21,7 @@ This score, along with descriptions of each point would help provide insights to
 ## Website Architecture
 The website uses Flask to create a RESTful api and a Next.js/React frontend. Flask was chosen because it provides a relatively quick setup process making it great for prototyping. Next.js/React was chosen, since it also provides a relatively quick and easy way to make beautiful websites. 
 
-The app itself is more complicated than just a method to upload statements and get an analysis. Something I’m relatively good at is full-stack development, as well as UI design, so I wanted to highlight that. I created a system where a loan officer at a bank can create or login to an account, see all of their past bank statement analysis, as well as upload new ones. I would go in depth more into the website, but the demo probably shows this better. 
+The app itself is more complicated than just a method to upload statements and get an analysis. Something I’m relatively good at is full-stack development, as well as UI design, so I wanted to highlight that. I created a system where a loan officer at a bank can create or login to an account, see all of their past bank statement analysis, as well as upload new ones. 
 
 # Instructions
 
